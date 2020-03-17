@@ -40,6 +40,8 @@ DJANGO_APPS = [
     "django.contrib.staticfiles",
 ]
 
+THIRD_PARTY_APPS = []
+
 # 만든 user앱을 여기에 설치
 PROJECT_APPS = ["users.apps.UsersConfig"]
 
