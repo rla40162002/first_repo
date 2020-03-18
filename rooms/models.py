@@ -21,25 +21,33 @@ class RoomType(AbstractItem):
     # roomtype ex 호텔, 개인, 집전체, 공유실 등
     """ RoomType Model Definition """
 
-    pass
+    class Meta:
+        verbose_name = "Room Type"
+        ordering = ["name"]
 
 
 class Amenity(AbstractItem):
     # 예의
     """ Amenity Model Definition """
-    pass
+
+    class Meta:
+        verbose_name_plural = "Amenities"
 
 
 class Facility(AbstractItem):
     # 시설
     """ Facility Model Definition """
-    pass
+
+    class Meta:
+        verbose_name_plural = "Facilities"
 
 
 class HouseRule(AbstractItem):
     # 숙소 규칙
     """ HouseRule Model Definition """
-    pass
+
+    class Meta:
+        verbose_name = "House Rule"
 
 
 class Room(core_models.TimeStampedModel):
@@ -64,9 +72,9 @@ class Room(core_models.TimeStampedModel):
     # 집주인, foreignkey 를 사용해서 user와 room을 연결해줌.
     room_type = models.ForeignKey(RoomType, on_delete=models.SET_NULL, null=True)
     # 방은 하나의 타입만 선택해야함
-    amenities = models.ManyToManyField(Amenity)
-    facilities = models.ManyToManyField(Facility)
-    house_rules = models.ManyToManyField(HouseRule)
+    amenities = models.ManyToManyField(Amenity, blank=True)
+    facilities = models.ManyToManyField(Facility, blank=True)
+    house_rules = models.ManyToManyField(HouseRule, blank=True)
 
     def __str__(self):
         return self.name
