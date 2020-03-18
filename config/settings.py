@@ -41,9 +41,14 @@ DJANGO_APPS = [
 ]
 
 THIRD_PARTY_APPS = []
+# 나중에 다른 개발자가 만든 app을 import 하기 위해 넣는 곳
 
-# 만든 user앱을 여기에 설치
-PROJECT_APPS = ["users.apps.UsersConfig"]
+# 만든 앱들을 여기에 설치
+PROJECT_APPS = [
+    "core.apps.CoreConfig",
+    "users.apps.UsersConfig",
+    "rooms.apps.RoomsConfig",
+]
 
 # INSTALLED_APPS 처음부터 설치된 앱 적혀있던 곳
 INSTALLED_APPS = DJANGO_APPS + PROJECT_APPS
@@ -130,3 +135,4 @@ STATIC_URL = "/static/"
 
 
 AUTH_USER_MODEL = "users.User"
+# 만든 User를 쓰기 위해 바꿔줌

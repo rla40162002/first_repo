@@ -33,17 +33,11 @@ class User(AbstractUser):  # models.Model을 상속
         (CURRENCY_KRW, "KRW"),
     }
 
-    avatar = models.ImageField(null=True, blank=True)  # 사용자 사진
-    gender = models.CharField(
-        choices=GENDER_CHOICES, max_length=10, null=True, blank=True
-    )
+    avatar = models.ImageField(blank=True)  # 사용자 사진
+    gender = models.CharField(choices=GENDER_CHOICES, max_length=10, blank=True)
     # 성별, null 허용. 한 줄 텍스트 글자수 제한 있음
-    bio = models.TextField(default="", blank=True)  # 비어있는 string 값, 여러 줄 가능, 글자수제한없음
-    birthdate = models.DateField(null=True)
-    language = models.CharField(
-        choices=LANGUAGE_CHOICES, max_length=2, null=True, blank=True
-    )
-    currency = models.CharField(
-        choices=CURRENCY_CHOICES, max_length=3, null=True, blank=True
-    )
+    bio = models.TextField(blank=True)  # 비어있는 string 값, 여러 줄 가능, 글자수제한없음
+    birthdate = models.DateField(blank=True, null=True)
+    language = models.CharField(choices=LANGUAGE_CHOICES, max_length=2, blank=True)
+    currency = models.CharField(choices=CURRENCY_CHOICES, max_length=3, blank=True)
     superhost = models.BooleanField(default=False)
