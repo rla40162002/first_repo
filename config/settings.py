@@ -40,7 +40,7 @@ DJANGO_APPS = [
     "django.contrib.staticfiles",
 ]
 
-THIRD_PARTY_APPS = []
+THIRD_PARTY_APPS = ["django_countires"]
 # 나중에 다른 개발자가 만든 app을 import 하기 위해 넣는 곳
 
 # 만든 앱들을 여기에 설치
