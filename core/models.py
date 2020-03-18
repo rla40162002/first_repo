@@ -10,6 +10,5 @@ class TimeStampedModel(models.Model):
     updated = models.DateTimeField(auto_now=True)
     # 모델 저장할때마다 새로운 날짜를 기록해줌.
 
-
-class Meta:  # 이 두줄을 해줘야 DB에 등록되지 않음
-    abstract = True  # DB에 나타나지 않는 추상 모델
+    class Meta:  # 이 두줄을 해줘야 DB에 등록되지 않음
+        abstract = True  # DB에 나타나지 않는 추상 모델
