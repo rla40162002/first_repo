@@ -2,7 +2,8 @@ from django.contrib import admin
 from . import models
 
 
-@admin.register(models.RoomType)
+# roomtype add가능하게 해줌
+@admin.register(models.RoomType, models.Facility, models.Amenity, models.HouseRule)
 class ItemAdmin(admin.ModelAdmin):
     pass
 

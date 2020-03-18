@@ -18,7 +18,27 @@ class AbstractItem(core_models.TimeStampedModel):
 
 
 class RoomType(AbstractItem):
-    # db에 들어가는 내용은 다르게 넣을 계획
+    # roomtype ex 호텔, 개인, 집전체, 공유실 등
+    """ RoomType Model Definition """
+
+    pass
+
+
+class Amenity(AbstractItem):
+    # 예의
+    """ Amenity Model Definition """
+    pass
+
+
+class Facility(AbstractItem):
+    # 시설
+    """ Facility Model Definition """
+    pass
+
+
+class HouseRule(AbstractItem):
+    # 숙소 규칙
+    """ HouseRule Model Definition """
     pass
 
 
@@ -42,7 +62,11 @@ class Room(core_models.TimeStampedModel):
     instant_book = models.BooleanField(default=False)  # 바로 예약 가능한지 여부
     host = models.ForeignKey(user_models.User, on_delete=models.CASCADE)
     # 집주인, foreignkey 를 사용해서 user와 room을 연결해줌.
-    room_type = models.ManyToManyField(RoomType, blank=True)
+    room_type = models.ForeignKey(RoomType, on_delete=models.SET_NULL, null=True)
+    # 방은 하나의 타입만 선택해야함
+    amenities = models.ManyToManyField(Amenity)
+    facilities = models.ManyToManyField(Facility)
+    house_rules = models.ManyToManyField(HouseRule)
 
     def __str__(self):
         return self.name
