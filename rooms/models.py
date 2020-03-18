@@ -4,6 +4,24 @@ from core import models as core_models
 from users import models as user_models
 
 
+class AbstractItem(core_models.TimeStampedModel):
+
+    """ Abstract Item """
+
+    name = models.CharField(max_length=80)
+
+    class Meta:
+        abstract = True
+
+    def __str__(self):
+        return self.name
+
+
+class RoomType(AbstractItem):
+    # db에 들어가는 내용은 다르게 넣을 계획
+    pass
+
+
 class Room(core_models.TimeStampedModel):
 
     """ Room Model Definition """
@@ -24,3 +42,7 @@ class Room(core_models.TimeStampedModel):
     instant_book = models.BooleanField(default=False)  # 바로 예약 가능한지 여부
     host = models.ForeignKey(user_models.User, on_delete=models.CASCADE)
     # 집주인, foreignkey 를 사용해서 user와 room을 연결해줌.
+    room_type = models.ManyToManyField(RoomType, blank=True)
+
+    def __str__(self):
+        return self.name
