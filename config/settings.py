@@ -50,6 +50,7 @@ PROJECT_APPS = [
     "rooms.apps.RoomsConfig",
     "reviews.apps.ReviewsConfig",
     "reservations.apps.ReservationsConfig",
+    "lists.apps.ListsConfig",
 ]
 
 # INSTALLED_APPS 처음부터 설치된 앱 적혀있던 곳
