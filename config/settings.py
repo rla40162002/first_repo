@@ -48,6 +48,7 @@ PROJECT_APPS = [
     "core.apps.CoreConfig",
     "users.apps.UsersConfig",
     "rooms.apps.RoomsConfig",
+    "reviews.apps.ReviewsConfig",
 ]
 
 # INSTALLED_APPS 처음부터 설치된 앱 적혀있던 곳
