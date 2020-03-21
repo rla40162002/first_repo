@@ -73,11 +73,9 @@ class RoomAdmin(admin.ModelAdmin):
     count_amenities.short_description = "COUNT AMT"
     # 보여주고 싶은 내용
 
-    )
     list_filter = ("instant_book", "city", "country")
     search_fields = ("=city", "^host__username")  # __ 를 통해서 유저이름을 가져올 수 있음
     # 도시 전체를 입력해야하고, 검색된 단어로 시작하는 유저를 찾음
-
 
 
 @admin.register(models.Photo)
