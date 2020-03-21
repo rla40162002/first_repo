@@ -8,7 +8,10 @@ class ItemAdmin(admin.ModelAdmin):
 
     """ Item Admin Definition """
 
-    pass
+    list_display = ("name", "used_by")
+
+    def used_by(self, obj):
+        return obj.rooms.count()
 
 
 @admin.register(models.Room)
@@ -46,6 +49,7 @@ class RoomAdmin(admin.ModelAdmin):
         "check_out",
         "instant_book",
         "count_amenities",
+        "count_photos",
     )  # 리스트에서 보여지는 것
 
     ordering = ("name", "price", "bedrooms")
@@ -72,6 +76,9 @@ class RoomAdmin(admin.ModelAdmin):
 
     count_amenities.short_description = "COUNT AMT"
     # 보여주고 싶은 내용
+
+    def count_photos(self, obj):
+        return obj.photos.count()
 
     list_filter = ("instant_book", "city", "country")
     search_fields = ("=city", "^host__username")  # __ 를 통해서 유저이름을 가져올 수 있음
