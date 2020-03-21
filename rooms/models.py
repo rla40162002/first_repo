@@ -26,7 +26,7 @@ class RoomType(AbstractItem):
 
 
 class Amenity(AbstractItem):
-    # 예의
+    # 편의시설
     """ Amenity Model Definition """
 
     class Meta:
@@ -79,7 +79,9 @@ class Room(core_models.TimeStampedModel):
     check_in = models.TimeField()  # 체크인 시간
     check_out = models.TimeField()  # 체크아웃 시간
     instant_book = models.BooleanField(default=False)  # 바로 예약 가능한지 여부
-    host = models.ForeignKey("users.User", on_delete=models.CASCADE)
+    host = models.ForeignKey(
+        "users.User", related_name="rooms", on_delete=models.CASCADE
+    )
     # 집주인, foreignkey 를 사용해서 user와 room을 연결해줌.
     room_type = models.ForeignKey("RoomType", on_delete=models.SET_NULL, null=True)
     # 방은 하나의 타입만 선택해야함
