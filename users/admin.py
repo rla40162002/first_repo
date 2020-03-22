@@ -1,6 +1,11 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
 from . import models  # .은 동일폴더라는 의미
+from rooms.models import Room
+
+
+class RoomInline(admin.StackedInline):
+    model = Room
 
 
 # admin.py와 같은 폴더에 있는 models.py를 불러오는 것
@@ -10,7 +15,7 @@ class CustomUserAdmin(UserAdmin):
     # CustomUserAdmin으로 user를 컨트롤 한다는 뜻
 
     """ Custom User Admin """
-    # 테스트용 코드. 커스텀 전 Django가 갖고 있는 admin 패널 사용할 예정
+    inlines = (RoomInline,)  # 다시 해야 할 부분
     fieldsets = UserAdmin.fieldsets + (
         (
             "Custom Profile",

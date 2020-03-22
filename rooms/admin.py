@@ -15,11 +15,16 @@ class ItemAdmin(admin.ModelAdmin):
         return obj.rooms.count()
 
 
+class PhotoInline(admin.TabularInline):
+    model = models.Photo
+
+
 @admin.register(models.Room)
 class RoomAdmin(admin.ModelAdmin):
 
     """ Room Admin Definition """
 
+    inlines = (PhotoInline,)
     fieldsets = (
         (
             "Basic Info",
@@ -67,6 +72,7 @@ class RoomAdmin(admin.ModelAdmin):
         "city",
         "country",
     )
+    raw_id_fields = ("host",)
     search_fields = ("=city", "^host__username")  # __ 를 통해서 유저이름을 가져올 수 있음
     # 도시 전체를 입력해야하고, 검색된 단어로 시작하는 유저를 찾음
 
