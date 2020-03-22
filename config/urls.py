@@ -24,3 +24,4 @@ urlpatterns = [
 
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+    # url 은 settings.MEDIA_URL, 폴더는 settings.MEDIA_ROOT
