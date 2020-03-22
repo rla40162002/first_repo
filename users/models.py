@@ -33,7 +33,7 @@ class User(AbstractUser):  # models.Model을 상속
         (CURRENCY_KRW, "KRW"),
     }
 
-    avatar = models.ImageField(blank=True)  # 사용자 사진
+    avatar = models.ImageField(upload_to="avatars", blank=True)  # 사용자 사진
     gender = models.CharField(choices=GENDER_CHOICES, max_length=10, blank=True)
     # 성별, null 허용. 한 줄 텍스트 글자수 제한 있음
     bio = models.TextField(blank=True)  # 비어있는 string 값, 여러 줄 가능, 글자수제한없음

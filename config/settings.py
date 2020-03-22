@@ -140,3 +140,6 @@ STATIC_URL = "/static/"
 
 AUTH_USER_MODEL = "users.User"
 # 만든 User를 쓰기 위해 바꿔줌
+
+MEDIA_ROOT = os.path.join(BASE_DIR, "uploads")
+MEDIA_URL = "/media/"
