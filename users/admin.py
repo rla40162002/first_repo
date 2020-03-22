@@ -10,9 +10,6 @@ class CustomUserAdmin(UserAdmin):
     # CustomUserAdmin으로 user를 컨트롤 한다는 뜻
 
     """ Custom User Admin """
-    # list_display =("username", "email", "gender", "language", "currency", "superhost")
-    # # user 목록 보여줄 때 속성들
-    # list_filter = ("language", "currency", "superhost")
     # 테스트용 코드. 커스텀 전 Django가 갖고 있는 admin 패널 사용할 예정
     fieldsets = UserAdmin.fieldsets + (
         (
@@ -31,7 +28,18 @@ class CustomUserAdmin(UserAdmin):
         ),  # fieldsets
     )  # 초기 admin 패널의 파란부분
 
+    # 원래 기본으로 주는 거에 커스텀 붙이기
+    list_filter = UserAdmin.list_filter + ("superhost",)
 
-# admin.site.register(models.User, CustomUserAdmin)
-# CustomUserAdmin 은 admin 패널에서 컨트롤 할 수 있는 user 클래스
-# 위 코드와 decorator 부분의 코드는 같은 기능을 함
+    list_display = (
+        "username",
+        "first_name",
+        "last_name",
+        "email",
+        "is_active",
+        "language",
+        "currency",
+        "superhost",
+        "is_staff",
+        "is_superuser",
+    )

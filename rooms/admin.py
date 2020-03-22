@@ -50,6 +50,7 @@ class RoomAdmin(admin.ModelAdmin):
         "instant_book",
         "count_amenities",
         "count_photos",
+        "total_rating",
     )  # 리스트에서 보여지는 것
 
     ordering = ("name", "price", "bedrooms")
