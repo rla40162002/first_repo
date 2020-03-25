@@ -1,5 +1,5 @@
 from django.contrib.auth.models import AbstractUser
-from django.db import models  # 이건 안 씀
+from django.db import models
 
 
 class User(AbstractUser):  # models.Model을 상속
@@ -10,28 +10,28 @@ class User(AbstractUser):  # models.Model을 상속
     GENDER_FEMALE = "female"
     GENDER_OTHER = "other"
 
-    GENDER_CHOICES = {
+    GENDER_CHOICES = (
         (GENDER_MALE, "Male"),
         (GENDER_FEMALE, "Female"),
         (GENDER_OTHER, "Other"),
-    }
+    )
 
     LANGUAGE_ENGLISH = "en"
     LANGUAGE_KOREAN = "kr"
 
-    LANGUAGE_CHOICES = {
+    LANGUAGE_CHOICES = (
         (LANGUAGE_ENGLISH, "English"),
         # LANGUAGE_ENGLISH 값은 DB로, English는 form에서 보여질 값
         (LANGUAGE_KOREAN, "Korean"),
-    }
+    )
 
     CURRENCY_USD = "usd"
     CURRENCY_KRW = "krw"
 
-    CURRENCY_CHOICES = {
+    CURRENCY_CHOICES = (
         (CURRENCY_USD, "USD"),
         (CURRENCY_KRW, "KRW"),
-    }
+    )
 
     avatar = models.ImageField(upload_to="avatars", blank=True)  # 사용자 사진
     gender = models.CharField(choices=GENDER_CHOICES, max_length=10, blank=True)
