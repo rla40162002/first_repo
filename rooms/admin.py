@@ -88,6 +88,8 @@ class RoomAdmin(admin.ModelAdmin):
     def count_photos(self, obj):
         return obj.photos.count()
 
+    count_photos.short_description = "Photo Count"
+
     list_filter = ("instant_book", "city", "country")
     search_fields = ("=city", "^host__username")  # __ 를 통해서 유저이름을 가져올 수 있음
     # 도시 전체를 입력해야하고, 검색된 단어로 시작하는 유저를 찾음
