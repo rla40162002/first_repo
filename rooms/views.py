@@ -1,8 +1,5 @@
 from django.utils import timezone
-from django.views.generic import ListView
-from django.http import Http404
-from django.urls import reverse
-from django.shortcuts import render, redirect
+from django.views.generic import ListView, DetailView
 from . import models
 
 
@@ -22,9 +19,8 @@ class HomeView(ListView):
         return context
 
 
-def room_detail(request, pk):
-    try:
-        room = models.Room.objects.get(pk=pk)
-        return render(request, "rooms/detail.html", {"room": room})
-    except models.Room.DoesNotExist:
-        raise Http404()
+class RoomDetail(DetailView):
+    """ RoomDetail Definition """
+
+    model = models.Room
+    pk_url_kwarg = "pk"  # pk 대신 다른 거로 대체 가능
