@@ -32,6 +32,15 @@ class User(AbstractUser):  # models.Model을 상속
         (CURRENCY_USD, "USD"),
         (CURRENCY_KRW, "KRW"),
     )
+    LOGIN_EMAIL = "email"
+    LOGIN_GITHUB = "github"
+    LOGIN_KAKAO = "kakao"
+
+    LOGIN_CHOICES = (
+        (LOGIN_EMAIL, "Email"),
+        (LOGIN_GITHUB, "Github"),
+        (LOGIN_KAKAO, "Kakao"),
+    )
 
     avatar = models.ImageField(upload_to="avatars", blank=True)  # 사용자 사진
     gender = models.CharField(choices=GENDER_CHOICES, max_length=10, blank=True)
@@ -45,3 +54,7 @@ class User(AbstractUser):  # models.Model을 상속
         choices=CURRENCY_CHOICES, max_length=3, blank=True, default=CURRENCY_KRW
     )
     superhost = models.BooleanField(default=False)
+
+    login_method = models.CharField(
+        max_length=50, choices=LOGIN_CHOICES, default=LOGIN_EMAIL
+    )
