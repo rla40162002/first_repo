@@ -38,6 +38,10 @@ class User(AbstractUser):  # models.Model을 상속
     # 성별, null 허용. 한 줄 텍스트 글자수 제한 있음
     bio = models.TextField(blank=True)  # 비어있는 string 값, 여러 줄 가능, 글자수제한없음
     birthdate = models.DateField(blank=True, null=True)
-    language = models.CharField(choices=LANGUAGE_CHOICES, max_length=2, blank=True)
-    currency = models.CharField(choices=CURRENCY_CHOICES, max_length=3, blank=True)
+    language = models.CharField(
+        choices=LANGUAGE_CHOICES, max_length=2, blank=True, default=LANGUAGE_KOREAN
+    )
+    currency = models.CharField(
+        choices=CURRENCY_CHOICES, max_length=3, blank=True, default=CURRENCY_KRW
+    )
     superhost = models.BooleanField(default=False)
