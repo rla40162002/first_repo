@@ -62,7 +62,22 @@ class SignUpView(FormView):
         user = authenticate(self.request, username=email, password=password)
         if user is not None:
             login(self.request, user)
+        user.verify_email()
         return super().form_valid(form)
+
+
+def complete_verification(request, key):
+    try:
+        user = models.User.objects.get(email_secret=key)
+        user.email_verified = True
+        # 인증 됐으니까 시크릿코드 부분은 비워주기
+        user.email_secret = ""
+        user.save()
+        # 성공 메시지 추가하기
+    except models.User.DoesNotExist:
+        # 에러 메시지 추가하기
+        pass
+    return redirect(reverse("core:home"))
 
 
 def github_login(request):
