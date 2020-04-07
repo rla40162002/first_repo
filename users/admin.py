@@ -4,8 +4,8 @@ from . import models  # .은 동일폴더라는 의미
 from rooms.models import Room
 
 
-# class RoomInline(admin.StackedInline):
-#     model = Room
+class RoomInline(admin.StackedInline):
+    model = Room
 
 
 # admin.py와 같은 폴더에 있는 models.py를 불러오는 것
@@ -15,7 +15,7 @@ class CustomUserAdmin(UserAdmin):
     # CustomUserAdmin으로 user를 컨트롤 한다는 뜻
 
     """ Custom User Admin """
-    # inlines = (RoomInline,)  # 다시 해야 할 부분
+    inlines = (RoomInline,)  # 다시 해야 할 부분
     fieldsets = UserAdmin.fieldsets + (
         (
             "Custom Profile",
