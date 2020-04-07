@@ -89,14 +89,17 @@ class SearchView(View):
                 for facility in facilities:
                     qs = qs.filter(facilities=facility)
 
-                paginator = Paginator(qs, 2)
+                paginator = Paginator(qs, 3)
 
                 page = request.GET.get("page", 1)
 
                 rooms = paginator.get_page(page)
-
+                room_info = request.GET.copy()
+                room_info = room_info.pop("page", True) and room_info.urlencode()
                 return render(
-                    request, "rooms/search.html", {"form": form, "rooms": rooms},
+                    request,
+                    "rooms/search.html",
+                    {"form": form, "rooms": rooms, "room_info": room_info},
                 )
 
         else:
