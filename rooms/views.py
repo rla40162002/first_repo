@@ -33,7 +33,8 @@ class SearchView(View):
 
     def get(self, request):
         country = request.GET.get("country")
-
+        print(request.GET.get("city"))
+        print(request.GET.get("country"))
         if country:
             form = forms.SearchForm(request.GET)
             # 먼저 미확인된 정보 주고
