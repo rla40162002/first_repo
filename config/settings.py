@@ -136,7 +136,9 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
 STATIC_URL = "/static/"
-
+# 경로를 꼭 /static/ 으로 안하고 내가 다른 거로 해도 됨. 파일명만 static이면 되는 듯
+STATICFILES_DIRS = [os.path.join(BASE_DIR, "static")]
+# 변수명이 꼭 STATIC 안 들어가도 됨.
 
 AUTH_USER_MODEL = "users.User"
 # 만든 User를 쓰기 위해 바꿔줌
