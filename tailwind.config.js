@@ -5,12 +5,12 @@ module.exports = {
         "25vh": "25vh",
         "50vh": "50vh",
         "75vh": "75vh",
-      } // spacing
+      }, // spacing
+      borderRadius: {
+        xl: "1.5rem",
+        ll: "0.5rem",
+      }
     }, // extend
-    borderRadius: {
-      xl: "1.5rem",
-      ll: "0.5rem",
-    }
   }, // theme
   variants: {},
   plugins: [],
