@@ -9,6 +9,7 @@ module.exports = {
     }, // extend
     borderRadius: {
       xl: "1.5rem",
+      ll: "0.5rem",
     }
   }, // theme
   variants: {},
