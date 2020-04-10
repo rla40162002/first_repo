@@ -46,6 +46,10 @@ class SignUpForm(forms.ModelForm):
         email = self.cleaned_data.get("email")
         try:
             models.User.objects.get(email=email)
+
+            if email == "":
+                raise forms.ValidationError("Email is empty", code="empty_email")
+
             raise forms.ValidationError(
                 "That email is already taken", code="existing_user"
             )
