@@ -7,6 +7,7 @@ from django.utils.html import strip_tags
 from django.template.loader import render_to_string
 from django.shortcuts import reverse
 
+
 class User(AbstractUser):  # models.Model을 상속
 
     """ Custom User Model """  # docstring
@@ -67,7 +68,7 @@ class User(AbstractUser):  # models.Model을 상속
     )
 
     def get_absolute_url(self):
-        return reverse("users:profile", kwargs={'pk': self.pk})
+        return reverse("users:profile", kwargs={"pk": self.pk})
 
     def verify_email(self):
         if self.email_verified is False:
