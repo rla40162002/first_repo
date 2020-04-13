@@ -1,7 +1,13 @@
 <div class="w-1/4 mb-10 px-2 overflow-hidden">
     <a href="{% url 'rooms:detail' room.pk %}">
-        <div class="w-full h-64 bg-cover bg-center rounded-lg mb-2" style="background-image: url({{room.first_photo}});">
-        </div>
+        {% if room.first_photo is not None %}
+            <div class="w-full h-64 bg-cover bg-center rounded-lg mb-2" style="background-image: url({{room.first_photo}});">
+            </div>
+        {% else %}
+            <div class="w-full h-64 rounded-lg mb-2 text-4xl border flex justify-center items-center" style="border-width:3px;" >
+            No Image
+            </div>
+        {% endif %}
         <div class="flex justify-between mb-2 truncate">
             <div class="w-4/5 overflow-hidden flex">
                 {% if room.host.superhost %}
