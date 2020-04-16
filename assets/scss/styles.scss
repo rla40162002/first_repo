@@ -1,6 +1,5 @@
 @tailwind base;
 @tailwind components;
-@tailwind utilities;
 
 .search-box{
     transition: box-shadow 0.5s linear;
@@ -21,9 +20,9 @@
 }
 
 .btn-link {
-    @apply text-center rounded-lg py-3 font-light text-lg w-full text-white bg-red-500;
+    @apply text-center py-3 rounded-lg font-light text-lg w-full text-white bg-red-500;
 }
-  
+
 
 input,
 textarea,
@@ -37,7 +36,7 @@ select {
 textarea {
     resize: none;
     height: 100px;
-
+    
 }
 
 select {
@@ -61,8 +60,8 @@ form {
 
 @keyframes messageFadeIn {
     0% {
-      opacity: 0;
-      transform: translateY(-50px);
+        opacity: 0;
+        transform: translateY(-50px);
     }
     5% {
         opacity: 1;
@@ -81,19 +80,21 @@ form {
 .message {
     animation: messageFadeIn 5s ease-in-out forwards;
     &.error {
-       @apply bg-red-600;
+        @apply bg-red-600;
     }
     &.info {
-      @apply bg-blue-500;
+        @apply bg-blue-500;
     }
     &.success {
-      @apply bg-green-500;
+        @apply bg-green-500;
     }
     &.warning {
-      @apply bg-yellow-400;
+        @apply bg-yellow-400;
     }
 }
 
 .border-section{
     @apply border-b border-gray-400 pb-8 mt-8;
 }
+
+@tailwind utilities;
