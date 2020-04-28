@@ -28,5 +28,7 @@ def create(request, room, year, month, day):
 
 
 class ReservationDetailView(View):
-    def get(self):
-        pass
+    def get(self, pk):
+        reservation = models.Reservation.objects.get_or_none(pk=pk)
+        if not reservation:  # reservation이 없을 때
+            return redirect(reverse("core:home"))
