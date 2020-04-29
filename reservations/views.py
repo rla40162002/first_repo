@@ -1,12 +1,16 @@
 import datetime
+from django.http import Http404
 from django.contrib import messages
 from django.views.generic import View
 from django.shortcuts import render, redirect, reverse
 from rooms import models as room_models
+from reviews import forms as review_forms
 from . import models
+
 
 class CreateError(Exception):
     pass
+
 
 def create(request, room, year, month, day):
     try:
@@ -28,7 +32,35 @@ def create(request, room, year, month, day):
 
 
 class ReservationDetailView(View):
-    def get(self, pk):
+    def get(self, *args, **kwargs):
+        pk = kwargs.get("pk")
         reservation = models.Reservation.objects.get_or_none(pk=pk)
-        if not reservation:  # reservation이 없을 때
-            return redirect(reverse("core:home"))
+        if not reservation or (
+            reservation.guest != self.request.user  # 예약한 사람 본인인지
+            and reservation.room.host != self.request.user  # 숙소 주인인지
+        ):
+            raise Http404()
+        form = review_forms.CreateReviewForm()
+        return render(
+            self.request,
+            "reservations/detail.html",
+            {"reservation": reservation, "form": form},
+        )
+
+
+def edit_reservation(request, pk, verb):
+    print(request, "\n", pk, "\n", verb, "\n")
+    reservation = models.Reservation.objects.get_or_none(pk=pk)
+    if not reservation or (
+        reservation.guest != request.user  # 예약한 사람 본인인지
+        and reservation.room.host != request.user  # 숙소 주인인지
+    ):
+        raise Http404()
+    if verb == "confirm":  # confirm을 클릭했다면
+        reservation.status = models.Reservation.STATUS_CONFIRMED
+    elif verb == "cancel":  # cancel을 클릭했다면
+        reservation.status = models.Reservation.STATUS_CANCELED
+        models.BookedDay.objects.filter(reservation=reservation).delete()
+    reservation.save()
+    messages.success(request, "Reservation Update")
+    return redirect(reverse("reservations:detail", kwargs={"pk": reservation.pk}))

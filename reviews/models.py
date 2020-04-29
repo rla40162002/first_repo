@@ -1,4 +1,5 @@
 from django.db import models
+from django.core.validators import MinValueValidator, MaxValueValidator
 from core import models as core_models
 
 
@@ -8,12 +9,24 @@ class Review(core_models.TimeStampedModel):
 
     review = models.TextField()  # 리뷰
 
-    accuracy = models.IntegerField()  # 정확성
-    communication = models.IntegerField()  # 의사소통
-    cleanliness = models.IntegerField()  # 청결도
-    location = models.IntegerField()  # 위치
-    check_in = models.IntegerField()  # 체크인
-    value = models.IntegerField()  # 만족도
+    accuracy = models.IntegerField(
+        validators=[MinValueValidator(1), MaxValueValidator(5)]
+    )  # 정확성
+    communication = models.IntegerField(
+        validators=[MinValueValidator(1), MaxValueValidator(5)]
+    )  # 의사소통
+    cleanliness = models.IntegerField(
+        validators=[MinValueValidator(1), MaxValueValidator(5)]
+    )  # 청결도
+    location = models.IntegerField(
+        validators=[MinValueValidator(1), MaxValueValidator(5)]
+    )  # 위치
+    check_in = models.IntegerField(
+        validators=[MinValueValidator(1), MaxValueValidator(5)]
+    )  # 체크인
+    value = models.IntegerField(
+        validators=[MinValueValidator(1), MaxValueValidator(5)]
+    )  # 만족도
     # 여러 부분에서의 평점
 
     # 작성자
@@ -39,4 +52,7 @@ class Review(core_models.TimeStampedModel):
         ) / 6
         return round(avg, 2)
 
-    rating_average.short_description = "avg."
+    rating_average.short_description = "Avg."
+
+    class Meta:
+        ordering = ("-created",)
