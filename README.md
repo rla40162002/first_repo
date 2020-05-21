@@ -34,8 +34,4 @@ Cloning Airbnb with Python, Django, Tailwind and more...
 * 메일인증
 * 로그인(깃허브, 카카오), 로그아웃
 * 사용자 정보 페이지
-<<<<<<< HEAD
 * 사용자 정보 수정
-=======
-* 사용자 정보 수정
->>>>>>> 6e49da1ae9b9d08f1d0d8a755e76a818e0893e4c
