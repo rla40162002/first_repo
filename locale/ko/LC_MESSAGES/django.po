@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-04-30 04:54+0900\n"
+"POT-Creation-Date: 2020-05-21 23:09+0900\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -20,12 +20,85 @@ msgstr ""
 
 #: .\templates\base.html:24
 msgid "Search by City"
-msgstr ""
+msgstr "도시로 검색"
 
-#: .\templates\partials\footer.html:4
+#: .\templates\partials\footer.html:5
 msgid "Please don't copy us."
-msgstr ""
+msgstr "복사금지"
 
-#: .\templates\partials\footer.html:6
+#: .\templates\partials\footer.html:7
 msgid "All rights reserved"
-msgstr ""
+msgstr "저작권 표시"
+
+#: .\templates\partials\nav.html:9
+msgid "Stop hosting"
+msgstr "호스팅 중단"
+
+#: .\templates\partials\nav.html:11
+msgid "Start hosting"
+msgstr "호스트 모드"
+
+#: .\templates\partials\nav.html:16
+msgid "Create Room"
+msgstr "숙소 등록"
+
+#: .\templates\partials\nav.html:18
+msgid "Profile"
+msgstr "사용자정보"
+
+#: .\templates\partials\nav.html:19
+msgid "Logout"
+msgstr "로그아웃"
+
+#: .\templates\partials\nav.html:21
+msgid "Login"
+msgstr "로그인"
+
+#: .\templates\partials\nav.html:22
+msgid "Sign up"
+msgstr "회원가입"
+
+#: .\templates\rooms\room_list.html:26
+#, python-format
+msgid "Page %(current_page)s of %(total_pages)s"
+msgstr "페이지 %(current_page)s of %(total_pages)s"
+
+#: .\users\mixins.py:13 .\users\mixins.py:22
+msgid "Can't go there"
+msgstr "접근 불가"
+
+#: .\users\models.py:21
+msgid "Male"
+msgstr "남성"
+
+#: .\users\models.py:22
+msgid "Female"
+msgstr "여성"
+
+#: .\users\models.py:23
+msgid "Other"
+msgstr "그 외"
+
+#: .\users\models.py:30
+msgid "English"
+msgstr "영어"
+
+#: .\users\models.py:32
+msgid "Korean"
+msgstr "한국어"
+
+#: .\users\models.py:54
+msgid "gender"
+msgstr "성별"
+
+#: .\users\models.py:57
+msgid "bio"
+msgstr "소개"
+
+#: .\users\models.py:60
+msgid "language"
+msgstr "언어"
+
+#: .\users\models.py:88
+msgid "Verify YWStay Account"
+msgstr "YWStay 계정 인증"

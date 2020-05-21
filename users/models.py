@@ -1,4 +1,5 @@
 import uuid
+from django.utils.translation import gettext_lazy as _
 from django.conf import settings
 from django.contrib.auth.models import AbstractUser
 from django.db import models
@@ -17,18 +18,18 @@ class User(AbstractUser):  # models.Model을 상속
     GENDER_OTHER = "other"
 
     GENDER_CHOICES = (
-        (GENDER_MALE, "Male"),
-        (GENDER_FEMALE, "Female"),
-        (GENDER_OTHER, "Other"),
+        (GENDER_MALE, _("Male")),
+        (GENDER_FEMALE, _("Female")),
+        (GENDER_OTHER, _("Other")),
     )
 
     LANGUAGE_ENGLISH = "en"
     LANGUAGE_KOREAN = "kr"
 
     LANGUAGE_CHOICES = (
-        (LANGUAGE_ENGLISH, "English"),
+        (LANGUAGE_ENGLISH, _("English")),
         # LANGUAGE_ENGLISH 값은 DB로, English는 form에서 보여질 값
-        (LANGUAGE_KOREAN, "Korean"),
+        (LANGUAGE_KOREAN, _("Korean")),
     )
 
     CURRENCY_USD = "usd"
@@ -49,12 +50,18 @@ class User(AbstractUser):  # models.Model을 상속
     )
 
     avatar = models.ImageField(upload_to="avatars", blank=True)  # 사용자 사진
-    gender = models.CharField(choices=GENDER_CHOICES, max_length=10, blank=True)
+    gender = models.CharField(
+        _("gender"), choices=GENDER_CHOICES, max_length=10, blank=True
+    )
     # 성별, null 허용. 한 줄 텍스트 글자수 제한 있음
-    bio = models.TextField(blank=True)  # 비어있는 string 값, 여러 줄 가능, 글자수제한없음
+    bio = models.TextField(_("bio"), blank=True)  # 비어있는 string 값, 여러 줄 가능, 글자수제한없음
     birthdate = models.DateField(blank=True, null=True)
     language = models.CharField(
-        choices=LANGUAGE_CHOICES, max_length=2, blank=True, default=LANGUAGE_KOREAN
+        _("language"),
+        choices=LANGUAGE_CHOICES,
+        max_length=2,
+        blank=True,
+        default=LANGUAGE_KOREAN,
     )
     currency = models.CharField(
         choices=CURRENCY_CHOICES, max_length=3, blank=True, default=CURRENCY_KRW
@@ -78,7 +85,7 @@ class User(AbstractUser):  # models.Model을 상속
                 "emails/verify_email.html", {"secret": secret}
             )
             send_mail(
-                "Verify Airbnbc Account",
+                _("Verify YWStay Account"),
                 strip_tags(html_message),
                 settings.EMAIL_FROM,
                 [self.email],
