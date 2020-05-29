@@ -3,24 +3,35 @@ from django.db.models import Q
 from django.http import Http404
 from django.views.generic import View
 from users import models as user_models
+from reservations import models as reservation_models
 from . import models, forms
 
 
-def go_conversation(request, a_pk, b_pk):
-    user_host = user_models.User.objects.get_or_none(pk=a_pk)
-    user_guest = user_models.User.objects.get_or_none(pk=b_pk)
-
+def go_conversation(request, host_pk, guest_pk):
+    user_host = user_models.User.objects.get_or_none(pk=host_pk)
+    user_guest = user_models.User.objects.get_or_none(pk=guest_pk)
+    # reservation = reservation_models.Reservation.obejcts.get_or_none()
     if user_host is not None and user_guest is not None:
         try:
-            conversation = models.Conversation.objects.get(
-                Q(participants=user_host) & Q(participants=user_guest)
-            )
+            # conversation = models.Conversation.objects.get(
+            #     Q(participants=user_host) & Q(participants=user_guest)
+            # )
             # ojects.filter(participants=user_host).filter(participants=user_guest) 이렇게 찾을 수도 있음
-            print(conversation)
+            conversation = (
+                models.Conversation.objects.filter(participants__pk=host_pk)
+                & models.Conversation.objects.filter(participants__pk=guest_pk)
+            ).first()
+            if conversation is None:
+                print("없음")
+                raise models.Conversation.DoesNotExist
         except models.Conversation.DoesNotExist:
+            print("예외처리됨")
             conversation = models.Conversation.objects.create()
             conversation.participants.add(user_host, user_guest)
-        return redirect(reverse("conversations:detail", kwargs={"pk": conversation.pk}))
+            print(conversation)
+            # print(conversation.participants.all())
+    print(conversation)
+    return redirect(reverse("conversations:detail", kwargs={"pk": conversation.pk}))
 
 
 class ConversationDetailView(View):

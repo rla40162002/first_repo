@@ -34,9 +34,9 @@
             </div>
             {% on_favs room as on_favs_boolean %}
             {% if on_favs_boolean %}
-                <a class="block mb-10 w-2/6 text-teal-600 font-bold" href="{% url 'lists:toggle-room' room.pk %}?action=remove">{% trans "Remove from Favorite" %}</a>
+                <a class="block mb-10 w-2/6 text-teal-600 font-bold" href="{% url 'lists:toggle-room' room.pk %}?action=remove"><i class="fas fa-heart text-red-700"></i>  {% trans "Remove from Favorite" %}</a>
             {% else %}
-                <a class="block mb-10 w-2/6 text-teal-600 font-bold" href="{% url 'lists:toggle-room' room.pk %}?action=add">{% trans "Save to Favorite" %}</a>
+                <a class="block mb-10 w-2/6 text-teal-600 font-bold" href="{% url 'lists:toggle-room' room.pk %}?action=add"><i class="far fa-heart text-gray-400"></i>  {% trans "Save to Favorite" %}</a>
             {% endif %}
             <div class="flex border-section">
                 <span class="mr-5 font-light">{{room.room_type}}</span>
@@ -51,19 +51,19 @@
             <div class="border-section">
                 <h4 class="font-medium text-lg mb-5">Amenities</h4>
                 {% for a in room.amenities.all %}
-                    <li class="mb-2 list-none">&nbsp;&nbsp;&nbsp;{{a}}</li>
+                    <li class="mb-2 list-none" style="padding-left:10px;">{{a}}</li>
                 {% endfor %}
             </div>
             <div class="border-section">
                 <h4 class="font-medium text-lg mb-5">Facilities</h4>
                 {% for fa in room.facilities.all %}
-                    <li class="mb-2 list-none">&nbsp;&nbsp;&nbsp;{{fa}}</li>
+                    <li class="mb-2 list-none" style="padding-left:10px;">{{fa}}</li>
                 {% endfor %}                
             </div>
             <div class="border-section">
                 <h4 class="font-medium text-lg mb-5">House Rules</h4>
                 {% for hr in room.house_rules.all %}
-                    <li class="mb-2 list-none">&nbsp;&nbsp;&nbsp;{{hr}}</li>
+                    <li class="mb-2 list-none" style="padding-left:10px;">{{hr}}</li>
                 {% endfor %}                
             </div>
             <div class="mt-10">
@@ -71,7 +71,7 @@
                 <div class="flex items-center">
                     <div>
                         <i class="fas fa-star text-teal-500"></i>
-                        <span class="font-bold text-xl">&nbsp;{{room.total_rating}}</span>
+                        <span class="font-bold text-xl" style="padding-left:4px;">{{room.total_rating}}</span>
                     </div>
                     <div class="h-4 w-px bg-gray-400 mx-5"></div>
                     <div>

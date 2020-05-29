@@ -4,6 +4,7 @@ module.exports = {
       spacing: {
         "25vh": "25vh",
         "50vh": "50vh",
+        "65vh": "65vh",
         "75vh": "75vh",
       }, // spacing
       borderRadius: {
