@@ -5,8 +5,8 @@ from . import models
 
 class SearchForm(forms.Form):
 
-    city = forms.CharField(initial="Anywhere")
-    country = CountryField(default="KR").formfield()
+    city = forms.CharField()
+    country = CountryField(blank_label="Select Country").formfield()
     room_type = forms.ModelChoiceField(
         required=False, empty_label="Any Kind", queryset=models.RoomType.objects.all()
     )
@@ -42,7 +42,6 @@ class CreatePhotoForm(forms.ModelForm):
 
 
 class CreateRoomForm(forms.ModelForm):
-
     class Meta:
         model = models.Room
         fields = (

@@ -8,28 +8,69 @@ Search
 
 {% block content %}
 
-<h2>Search!</h2>
-<form method="get" action="{% url "rooms:search" %}">
-    {{form.as_p}}
-    <button>Search</button>
-</form>
+    <span class="text-4xl text-center flex flex-col">Search!</span>
+    <form method="get" action="{% url 'rooms:search' %}">
+        <div class="-mt-5 container max-w-full h-80vh flex mb-20">
+            <div class="container lg:w-5/12 md:w-1/2 xl:w-1/4 my-10 mx-10 flex flex-col border p-6 border-gray-400">
+            {% for field in form %}
+                {% if field.name == "amenities" %}
+                    </div>
+                    <div class="container lg:w-5/12 md:w-1/2 xl:w-1/4 my-10 flex flex-col border p-6 border-gray-400">
+                        <span class="text-4xl">Amenities</span>
+                    {% for a in field %}
+                        {% if forloop.counter == 15 %}
+                            </div>
+                            <div class="container lg:w-5/12 md:w-1/2 xl:w-1/4 my-10 flex flex-col border p-6 border-gray-400">
+                        {% endif %}
+                        {% if forloop.counter == 30 %}
+                            </div>
+                            <div class="container lg:w-5/12 md:w-1/2 xl:w-1/4 my-10 flex flex-col border p-6 border-gray-400">
+                        {% endif %}
+                        {{a}}
+                        {% if forloop.counter == 42 %}
+                            </div>
+                            <div class="container lg:w-5/12 md:w-1/2 xl:w-1/4 my-10 flex flex-col border p-6 border-gray-400">
+                        {% endif %}
+                    {% endfor %}
+                {% elif field.name == "facilities" %}
+                    <span class="text-4xl">Facilities</span>
+                    {% for f in field %}
+                        {{f}}
+                    {% endfor %}
+                {% else %}
+                    {{field.label}}
+                    {{field}}
+                {% endif %}
+            {% endfor %}
+                    <button class="mt-64 w-48 h-15 bg-blue-500 hover:bg-blue-700 text-white text-4xl font-bold py-5 px-4 rounded-sm">Search</button>
+               </div>
+        </div>
+    </form>
 
-<h3>Results</h3>
+    <span class="text-4xl flex flex-col mb-10 ml-5">Results</span>
+    <div class="container mx-auto pb-10">
+        <div class="flex flex-wrap -mx-40 mb-10">
+            {% for room in rooms %}
+                {% include 'mixins/room_card.html' with room=room %}
+            {% endfor %}
+        </div>
 
-{% for room in rooms %}
-<h3>{{room.name}}</h3>
-{% endfor %}
+        <div class="flex items-center justify-center mx-auto container">
+            {% if rooms.has_previous %}
+                <a href="?{{room_info}}&page={{rooms.previous_page_number}}" class="text-teal-500">
+                    <i class="fas fa-arrow-left fa-lg"></i>
+                </a>
+            {% endif %}
 
-<h5>
-    {% if rooms.has_previous %}
-    <a href="?{{room_info}}&page={{rooms.previous_page_number}}">Previous</a>
-    {% endif %}
-
-    Page {{rooms.number}} of {{rooms.paginator.num_pages}}
-
-    {% if rooms.has_next %}
-    <a href="?{{room_info}}&page={{rooms.next_page_number}}">Next</a>
-    {% endif %}
-</h5>
+            <span class="mx-3 font-medium text-lg">
+                Page {{rooms.number}} of {{rooms.paginator.num_pages}}
+            </span>
+            {% if rooms.has_next %}
+                <a href="?{{room_info}}&page={{rooms.next_page_number}}" class="text-teal-500">
+                    <i class="fas fa-arrow-right fa-lg"></i>
+                </a>
+            {% endif %}
+        </div>
+    </div>
 
 {% endblock content %}

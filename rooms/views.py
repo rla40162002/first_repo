@@ -37,14 +37,15 @@ class SearchView(View):
     """ SearchView Definition """
 
     def get(self, request):
+        city = request.GET.get("city").strip()
         country = request.GET.get("country")
-        print(request.GET.get("city"))
-        print(request.GET.get("country"))
+        if city == "" or city.lower() == "anywhere" and country is None:
+            return redirect(reverse("core:home"))  # 아무것도 입력 안 하면 튕겨버리기
         if country:
             form = forms.SearchForm(request.GET)
             # 먼저 미확인된 정보 주고
             if form.is_valid():  # 그게 이상이 없는지 확인
-                city = form.cleaned_data.get("city")
+                city = form.cleaned_data.get("city").strip()
                 country = form.cleaned_data.get("country")
                 room_type = form.cleaned_data.get("room_type")
                 price = form.cleaned_data.get("price")
@@ -58,8 +59,7 @@ class SearchView(View):
                 facilities = form.cleaned_data.get("facilities")
 
                 filter_args = {}
-
-                if city != "Anywhere":
+                if city.lower() != "anywhere":
                     filter_args["city__startswith"] = city
 
                 filter_args["country"] = country
@@ -87,7 +87,6 @@ class SearchView(View):
 
                 if superhost is True:
                     filter_args["host__superhost"] = True
-
                 qs = models.Room.objects.filter(**filter_args).order_by("-created")
                 for amenity in amenities:
                     qs = qs.filter(amenities=amenity)
@@ -109,9 +108,15 @@ class SearchView(View):
                 )
 
         else:
-            form = forms.SearchForm()
+            form = forms.SearchForm(request.GET)
 
-        return render(request, "rooms/search.html", {"form": form},)
+        qs = models.Room.objects.filter(city__startswith=city).order_by("-created")
+        paginator = Paginator(qs, 3)
+        page = request.GET.get("page", 1)
+        rooms = paginator.get_page(page)
+        room_info = request.GET.copy()
+        room_info = room_info.pop("page", True) and room_info.urlencode()
+        return render(request, "rooms/search.html", {"form": form, "rooms": rooms, "room_info": room_info})
 
 
 class EditRoomView(user_mixins.LoggedInOnlyView, UpdateView):

@@ -28,9 +28,6 @@ def go_conversation(request, host_pk, guest_pk):
             print("예외처리됨")
             conversation = models.Conversation.objects.create()
             conversation.participants.add(user_host, user_guest)
-            print(conversation)
-            # print(conversation.participants.all())
-    print(conversation)
     return redirect(reverse("conversations:detail", kwargs={"pk": conversation.pk}))
 
 
