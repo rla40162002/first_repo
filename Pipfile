@@ -5,7 +5,6 @@ verify_ssl = true
 
 [dev-packages]
 flake8 = "*"
-black = "*"
 awsebcli = "*"
 
 [packages]
@@ -16,7 +15,6 @@ django-seed = "*"
 requests = "*"
 django-dotenv = "*"
 npm = "*"
-pipenv-to-requirements = "*"
 
 [requires]
 python_version = "3.7"
