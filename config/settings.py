@@ -23,7 +23,8 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = "*(388_uiv$@kx_zv$ufn)d#u1$7dd7c!0_m2gt&qimh_c-vv)0"
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = bool(os.environ.get("DEBUG"))
+# DEBUG = bool(os.environ.get("DEBUG"))
+DEBUG = True
 ALLOWED_HOSTS = []
 
 
@@ -100,7 +101,7 @@ WSGI_APPLICATION = "config.wsgi.application"
 #         "NAME": os.path.join(BASE_DIR, "db.sqlite3"),
 #     }
 # }
-if DEBUG:
+if DEBUG is False:
 
     DATABASES = {
         "default": {
