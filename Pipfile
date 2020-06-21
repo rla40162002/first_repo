@@ -18,6 +18,8 @@ npm = "*"
 pipenv-to-requirements = "*"
 psycopg2 = "*"
 sentry--sdk = "==0.13.2"
+django-storages = "*"
+boto3 = "*"
 
 [requires]
 python_version = "3.7"

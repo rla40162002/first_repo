@@ -17,6 +17,7 @@ urlpatterns = [
     path("lists/", include("lists.urls", namespace="lists")),
     path("conversations/", include("conversations.urls", namespace="conversations")),
     path("admin/", admin.site.urls),
+    # path(os.environ.get("DJANGO_ADMIN", "admin/"), admin.site.urls),
     path("sentry-debug/", trigger_error),
 ]  # 이부분 변경하면 접속할때의 주소가 바뀜.
 
