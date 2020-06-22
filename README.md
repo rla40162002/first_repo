@@ -23,8 +23,8 @@ Cloning Airbnb with Python, Django, Tailwind and more...
     2) python manage.py seed_photos
     3) python manage.py seed_amenities
     3) python manage.py seed_facilities
-    4) python manage.py seed_houseRules
-    5) python manage.py seed_roomType
+    4) python manage.py seed_house_rules
+    5) python manage.py seed_room_types
     6) python manage.py seed_rooms --number (생성할 데이터 개수)
     7) python manage.py seed_reservations --number (생성할 데이터 개수)
 10. python manage.py runserver
@@ -45,3 +45,4 @@ Cloning Airbnb with Python, Django, Tailwind and more...
 * 좋아요 표시하기
 * 좋아요 표시한 숙소 리스트 확인
 * 리뷰 작성하기
+* 메시지 보내기(호스트 <-> 게스트)
