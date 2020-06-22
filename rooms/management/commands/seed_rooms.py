@@ -44,10 +44,15 @@ class Command(BaseCommand):
         for pk in created_clean:
             room = room_models.Room.objects.get(pk=pk)
             for i in range(3, random.randint(10, 30)):  # 3~ (10~17)
+                random_photo = random.randint(1, 2)
+                if random_photo == 1:
+                    pho = f"room_photos/{random.randint(1,31)}.webp"
+                else:
+                    pho = f"room_photos/{random.randint(1,15)}.jpg"
                 room_models.Photo.objects.create(
                     caption=seeder.faker.sentence(),
                     room=room,
-                    file=f"room_photos/{random.randint(1,31)}.webp",
+                    file=pho,
                 )
 
             for am in amenities:

@@ -187,8 +187,6 @@ LOGIN_URL = "/users/login/"
 LOCALE_PATHS = (os.path.join(BASE_DIR, "locale"),)
 
 
-
-
 if not DEBUG:
     # Sentry
     DEFAULT_FILE_STORAGE = "config.custom_storages.UploadStorage"
