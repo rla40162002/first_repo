@@ -26,6 +26,7 @@ SECRET_KEY = os.environ.get("DJANGO_SECRET", "m9zAC;M.rP")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = bool(os.environ.get("DEBUG"))
 ALLOWED_HOSTS = [".elasticbeanstalk.com", "localhost"]
+# ALLOWED_HOSTS = "*"
 
 
 # Application definition
@@ -62,12 +63,12 @@ INSTALLED_APPS = DJANGO_APPS + PROJECT_APPS
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
+    "django.middleware.locale.LocaleMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
-    "django.middleware.locale.LocaleMiddleware",
 ]
 
 ROOT_URLCONF = "config.urls"

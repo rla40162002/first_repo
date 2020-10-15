@@ -18,10 +18,10 @@ from . import forms, models, mixins
 
 class LoginView(mixins.LoggedOutOnlyView, FormView):
 
-    template_name = "users/login.html"
-    form_class = forms.LoginForm
+    template_name = "users/login.html"  # 렌더링 할 페이지
+    form_class = forms.LoginForm  # 로그인 폼에 들어갈 내용
 
-    def form_valid(self, form):
+    def form_valid(self, form):  # form에서 입력한 정보들이 valid한지 검사
         email = form.cleaned_data.get("email")
         password = form.cleaned_data.get("password")
         user = authenticate(self.request, username=email, password=password)

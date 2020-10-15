@@ -33,7 +33,7 @@ def go_conversation(request, host_pk, guest_pk):
 
 class ConversationDetailView(View):
     def get(self, *args, **kwargs):
-        pk = kwargs.get("pk")
+        pk = kwargs.get("pk")  # conversation pk
         conversation = models.Conversation.objects.get_or_none(pk=pk)
         if not conversation:
             raise Http404()
@@ -45,7 +45,7 @@ class ConversationDetailView(View):
 
     def post(self, *args, **kwargs):
         message = self.request.POST.get("message", None)
-        pk = kwargs.get("pk")
+        pk = kwargs.get("pk")  # conversation pk
         conversation = models.Conversation.objects.get_or_none(pk=pk)
         if not conversation:
             raise Http404()

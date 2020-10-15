@@ -13,12 +13,12 @@
                 {% if LANGUAGE_CODE == 'en' %}
                 selected
                 {% endif %}
-            >English</option>
+            >{% trans "English" %}</option>
             <option value="ko" 
                 {% if LANGUAGE_CODE == 'ko' %}
                 selected
                 {% endif %}
-            >Korean</option>
+            >{%trans "Korean" %}</option>
         </select>
     </div>
 </footer>
